@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starset Services</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content responsive-wrapper">
+            <div class="header-logo">
+                <a href="https://starset4consulting.github.io/Our-Website/">
+                    <div>
+                        <img src="logo.png" alt="Logo Icon" />
+                    </div>
+                </a>
+            </div>
+            <div class="header-navigation">
+                <a style="text-decoration: none;" href="https://starset4consulting.github.io/Our-Website/">
+                <h2>Starset Consultancy Services</h2>
+            </a>
+            </div>
+            <a href="#" class="button">
+                <i class="ph-list-bold"></i>
+                <span>Menu</span>
+            </a>
+        </div>
+    </header>
+    <main class="main">
+        <div class="responsive-wrapper">
+            <div class="main-header">
+                <h1>Dashboard</h1>
+            </div>
+            <div class="horizontal-tabs">
+                <a href="#" onclick="showContent('order-overview')">Today's Orders</a>
+                <a href="#" onclick="showContent('new-bill')">New Bill</a>
+                <a href="#" onclick="showContent('customer-info')">Customer's Information</a>
+                <a href="#" onclick="showContent('orders')">Orders</a>
+                <a href="#" onclick="showContent('workers')">Workers</a>
+            </div>
+            <div class="content">
+                <div id="new-bill" class="content-main hidden">
+                    <div class="bill-logo"><img src="Shop.jpeg" alt="log"></div>
+                    <form id="new-bill-form">
+                        <div class="form-section">
+                            <div class="form-column">
+                                <fieldset>
+                                    <legend>
+                                        <label for="measurements">Measurements:</label>
+                                    </legend>
+                                    <textarea id="measurements" name="measurements" rows="4" cols="150" required></textarea>
+                                </fieldset>
+                                <fieldset>
+                                    <legend>Pant</legend>
+                                    <label for="SideP/Cross"><input type="radio" name="SideP/Cross" id="SideP/Cross" value="SideP/Cross">SideP/Cross</label>
+                                    <label for="Plates"><input type="radio" name="Plates" id="Plates" value="Plates">Plates</label>
+                                    <label for="Belt"><input type="radio" name="Belt" id="Belt" value="Belt">Belt</label>
+                                    <label for="Back P."><input type="radio" name="Back P." id="Back P." value="Back P.">Back P.</label>
+                                    <label for="WP."><input type="radio" name="pant" id="WP." value="WP.">WP.</label>
+                                </fieldset>
+                                <fieldset>
+                                    <legend>Shirt</legend>
+                                    <label for="Collar"><input type="radio" name="Collar" id="Collar" value="Collar">Collar</label>
+                                    <label for="Cuff"><input type="radio" name="sCuff" id="Cuff" value="Cuff">Cuff</label>
+                                    <label for="Pkt."><input type="radio" name="Pkt." id="Pkt" value="Pkt.">Pkt.</label>
+                                    <label for="Loose"><input type="radio" name="Loose" id="Loose" value="Loose">Loose</label>
+                                    <label for="DT/TT"><input type="radio" name="DT/TT" id="DT/TT" value="DT/TT">DT/TT</label>
+                                </fieldset>
+                                <fieldset>
+                                    <legend>Garment Type:</legend>
+                                    <label for="suit">
+                                        <input type="radio" id="suit" name="garment_type" value="Suit" > Suit
+                                    </label>
+                                    <label for="safari-jacket">
+                                        <input type="radio" id="safari-jacket" name="garment_type" value="Safari/Jacket" > Safari/Jacket
+                                    </label>
+                                    <label for="pant">
+                                        <input type="radio" id="pant" name="garment_type" value="Pant" > Pant
+                                    </label>
+                                    <label for="shirt">
+                                        <input type="radio" id="shirt" name="garment_type" value="Shirt" > Shirt
+                                    </label>
+                                </fieldset>
+                                <label for="quantity">Quantity:</label>
+                                <input type="number" id="quantity" name="quantity" min="1" required>
+
+                                <label for="today-date">Order Date:</label>
+                                <input type="date" id="today-date" name="today_date" required>
+
+                                <label for="due-date">Delivery Date:</label>
+                                <input type="date" id="due-date" name="due_date" required>
+
+                                <label for="worker-name">Worker Name:</label>
+                                <select id="worker-name" name="worker_name" required>
+                                    <option value="" disabled selected>Select a worker</option>
+                                    <option value="Worker 1">Worker 1</option>
+                                    <option value="Worker 2">Worker 2</option>
+                                    <option value="Worker 3">Worker 3</option>
+                                    <option value="Worker 4">Worker 4</option>
+                                    <option value="Worker 5">Worker 5</option>
+                                    <option value="Worker 6">Worker 6</option>
+                                    <option value="Worker 7">Worker 7</option>
+                                    <option value="Worker 8">Worker 8</option>
+                                    <option value="Worker 9">Worker 9</option>
+                                    <option value="Worker 10">Worker 10</option>
+                                    <option value="Worker 11">Worker 11</option>
+                                    <option value="Worker 12">Worker 12</option>
+                                    <option value="Worker 13">Worker 13</option>
+                                    <option value="Worker 14">Worker 14</option>
+                                    <option value="Worker 15">Worker 15</option>
+                                    <option value="Worker 16">Worker 16</option>
+                                    
+                                </select>
+                            </div>
+                            <div class="form-column">
+                                <h2>Customer Information</h2>
+                                <label for="customer-name">Customer Name:</label>
+                                <input type="text" id="customer-name" name="customer_name" required>
+
+                                <label for="mobile-number">Mobile Number:</label>
+                                <input type="tel" id="mobile-number" name="mobile_number" pattern="[0-9]{10}" placeholder="enter mobile number." required>
+                            </div>
+                        </div>
+                        <div class="centering">
+                            <button type="submit" class="button save-print">Save and Print</button>
+                        </div>
+                    </form>
+                </div>
+                <div id="customer-info" class="content-main hidden">
+                    <h2>Customer's Information</h2>
+                    <form id="customer-info-form">
+                        <label for="customer-mobile-number">Mobile Number:</label>
+                        <!-- <input type="tel" id="customer-mobile-number" name="mobile_number" pattern="[0-9]{10}" placeholder="1234567890" required> -->
+                            <div class="search">
+                        <input type="tel" id="customer-mobile-number" name="mobile_number" pattern="[0-9]{10}" placeholder="Enter mobile number" required />
+                        <button type="submit">
+                            <i class="ph-magnifying-glass-bold"></i>
+                        </button>
+                    </div>
+                    <button onclick="searchCustomer()">Search</button>
+                    </form>
+                    <div class="search-results" id="search-results">
+                        <!-- Search results will be displayed here -->
+                    </div>
+                    <div id="order-details">
+                        <!-- Customer's orders will be displayed here -->
+                    </div>
+                </div>
+                <div id="order-overview" class="content-main">
+                    <h2>Today's Orders</h2>
+                    <div id="todays-orders">
+                        <!-- Today's orders will be displayed here -->
+                    </div>
+                </div>
+                <div id="orders" class="content-main hidden">
+                    <h2>Orders</h2>
+                    <div class="sorting-options">
+                        <div>
+                            <label for="sort-date">Sort by Date:</label>
+                            <select id="sort-date">
+                                <option value="newest">Newest First</option>
+                                <option value="oldest">Oldest First</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="sort-status">Sort by Status:</label>
+                            <select id="sort-status">
+                                <option value="all">All</option>
+                                <option value="pending">Pending</option>
+                                <option value="in-progress">In Progress</option>
+                                <option value="completed">Completed</option>
+                            </select>
+                        </div>
+                        <div>
+                            <button onclick="sortOrders('date')">Submit</button>
+                        </div>
+                    </div>
+                    <div class="orders-list" id="orders-list">
+                        <!-- Orders will be listed here -->
+                    </div>
+                </div>
+                <div id="workers" class="content-main hidden">
+                    <h2>Workers</h2>
+                    <div id="worker-list">
+                        <!-- Worker Profiles will be dynamically inserted here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        function showContent(id) {
+            // Hide all content sections
+            const contentSections = document.querySelectorAll('.content-main');
+            contentSections.forEach(section => section.classList.add('hidden'));
+
+            // Show the clicked section
+            document.getElementById(id).classList.remove('hidden');
+
+            // Fetch and display today's orders if the section is "order-overview"
+            if (id === 'order-overview') {
+                fetchTodaysOrders();
+            }
+        }
+
+        function fetchTodaysOrders() {
+            fetch('http://localhost:5000/api/todays-orders')
+                .then(response => response.json())
+                .then(data => {
+                    displayTodaysOrders(data);
+                })
+                .catch(error => {
+                    console.error('Error fetching today\'s orders:', error);
+                });
+        }
+
+        function displayTodaysOrders(orders) {
+    const todaysOrders = document.getElementById('todays-orders');
+    todaysOrders.innerHTML = '';
+
+    if (orders.length === 0) {
+        todaysOrders.innerHTML = '<p>No orders for today.</p>';
+        return;
+    }
+
+    // Create a table for the orders
+    const table = document.createElement('table');
+    table.innerHTML = `
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Customer Name</th>
+                <th>Order Date</th>
+                <th>Delivery Date</th>
+                <th>Garment Type</th>
+                <th>Worker</th>
+            </tr>
+        </thead>
+        <tbody>
+            ${orders.map(order => `
+                <tr>
+                    <td>${order.id}</td>
+                    <td>${order.customer_name}</td>
+                    <td>${formatDateTime(order.order_date)}</td>
+                    <td>${formatDateTime(order.delivery_date)}</td>
+                    <td>${order.garment_type}</td>
+                    <td>${order.worker_name}</td>
+                </tr>
+            `).join('')}
+        </tbody>
+    `;
+    todaysOrders.appendChild(table);
+}
+
+
+        function formatDateTime(dateTimeString) {
+            // Create a Date object from the string
+            const date = new Date(dateTimeString);
+            
+            // Extract date in YYYY-MM-DD format
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+            const day = String(date.getDate()).padStart(2, '0');
+            
+            return `${year}-${month}-${day}`;
+        }
+
+
+
+        document.getElementById('customer-info-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            
+            const mobileNumber = document.getElementById('customer-mobile-number').value;
+    
+            fetch(`http://127.0.0.1:5000/api/customer-info/${mobileNumber}`)
+                .then(response => response.json())
+                .then(data => {
+                    displayCustomerOrders(data.order_history);
+                })
+                .catch(error => {
+                    console.error('Error fetching customer data:', error);
+                    alert('No orders found for this customer.');
+                });
+        });
+    
+        function displaySearchResults(customers) {
+    const searchResults = document.getElementById("search-results");
+    searchResults.innerHTML = "";
+
+    customers.forEach(customer => {
+        const resultItem = document.createElement("div");
+        resultItem.className = "result-item";
+        resultItem.innerHTML = `
+            <table>
+                <tr>
+                    <th>Customer Name:</th>
+                    <td>${customer.name}</td>
+                </tr>
+                <tr>
+                    <th>Mobile Number:</th>
+                    <td>${customer.mobile}</td>
+                </tr>
+            </table>
+            <button onclick="fetchCustomerOrders(${customer.id})">View Orders</button>
+        `;
+        searchResults.appendChild(resultItem);
+    });
+}
+
+function displayCustomerOrders(orders) {
+    const orderDetails = document.getElementById("order-details");
+    orderDetails.innerHTML = "<h3>Customer Orders:</h3>";
+
+    if (orders.length === 0) {
+        orderDetails.innerHTML += "<p>No orders found for this customer.</p>";
+        return;
+    }
+
+    const orderTable = document.createElement("table");
+    orderTable.className = "orders-table";
+
+    const tableHeader = `
+        <tr>
+            <th>Order ID</th>
+            <th>Garment Type</th>
+            <th>Quantity</th>
+            <th>Order Date</th>
+            <th>Due Date</th>
+            <th>Status</th>
+        </tr>
+    `;
+    orderTable.innerHTML = tableHeader;
+
+    orders.forEach(order => {
+        const orderRow = `
+            <tr>
+                <td>${order.id}</td>
+                <td>${order.garment_type}</td>
+                <td>${order.quantity}</td>
+                <td>${formatDateTime(order.order_date)}</td>
+                <td>${formatDateTime(order.delivery_date)}</td>
+                <td>${order.status}</td>
+            </tr>
+        `;
+        orderTable.innerHTML += orderRow;
+    });
+
+    orderDetails.appendChild(orderTable);
+}
+
+document.getElementById('new-bill-form').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const formData = new FormData(this);
+    const garmentType = formData.get('garment_type'); // Retrieve the selected garment type
+
+    const data = {
+        garment_type: garmentType,
+        // Collect other form data as needed
+        pant_options: formData.get('pant_options'),
+        shirt_options: formData.get('shirt_options'),
+        quantity: formData.get('quantity'),
+        order_date: formData.get('today_date'),
+        delivery_date: formData.get('due_date'),
+        worker_name: formData.get('worker_name'),
+        customer_name: formData.get('customer_name'),
+        mobile_number: formData.get('mobile_number')
+    };
+
+    console.log('Form Data:', data); // Debugging line to see the form data
+
+    fetch('http://127.0.0.1:5000/api/new-bill', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(result => {
+        console.log('Bill created:', result);
+        alert('Bill created successfully');
+        this.reset();
+    })
+    .catch(error => {
+        console.error('Error creating bill:', error);
+        alert('An error occurred while creating the bill.');
+    });
+});
+
+
+        function sortOrders(sortType) {
+            const sortDate = document.getElementById('sort-date').value;
+            const sortStatus = document.getElementById('sort-status').value;
+
+            fetch(`http://127.0.0.1:5000/api/orders?sort=${sortType}&date=${sortDate}&status=${sortStatus}`)
+                .then(response => response.json())
+                .then(data => {
+                    displayOrders(data);
+                })
+                .catch(error => {
+                    console.error('Error sorting orders:', error);
+                });
+        }
+
+        function displayOrders(orders) {
+            const ordersList = document.getElementById('orders-list');
+            ordersList.innerHTML = '';
+
+            orders.forEach(order => {
+                const orderItem = document.createElement('div');
+                orderItem.className = 'order-item';
+                orderItem.innerHTML = `
+                    <h3>Order ID: ${order.id}</h3>
+                    <h3>Customer Name: ${order.customer_name}</h3>
+                    <p>Order Date: ${formatDateTime(order.order_date)}</p>
+                    <p>Due Date: ${formatDateTime(order.delivery_date)}</p>
+                    <p>Worker: ${order.worker_name}</p>
+                    <p>Garment Type: ${order.garment_type}</p>
+                `;
+                ordersList.appendChild(orderItem);
+            });
+        }
+
+        // Initialize the page with the first tab active
+        showContent('order-overview');
+    </script>
+</body>
+</html>
