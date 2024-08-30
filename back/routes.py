@@ -4,6 +4,24 @@ from datetime import datetime
 
 main = Blueprint('main', __name__)
 
+
+#Route for order status check
+@main.route('/api/orders/<int:order_id>', methods=['PATCH'])
+def update_order_status(order_id):
+    data = request.json
+    order = Order.query.get(order_id)
+    if not order:
+        return jsonify({'error': 'Order not found'}), 404
+    
+    # Update the order status
+    order.order_status = data.get('order_status', order.order_status)
+    
+    # Save the changes to the database
+    db.session.commit()
+    
+    return jsonify(order.as_dict()), 200
+
+
 # Route to get today's orders
 @main.route('/api/todays-orders', methods=['GET'])
 def get_todays_orders():
@@ -48,7 +66,8 @@ def create_new_bill():
             delivery_date=delivery_date,
             worker_name=data.get('worker_name'),
             customer_name=data.get('customer_name'),
-            mobile_number=data.get('mobile_number')
+            mobile_number=data.get('mobile_number'),
+            order_status="Pending"
         )
         db.session.add(new_order)
         db.session.commit()
@@ -85,33 +104,54 @@ def get_customer_info(mobile_number):
 
     return jsonify(customer_info), 200
 
-# Route to get workers
-@main.route('/api/workers', methods=['GET'])
-def get_workers():
-    workers = Worker.query.all()
-    return jsonify([worker.as_dict() for worker in workers]), 200
+def order_as_dict(order):
+    return {
+        'id': order.id,
+        'garment_type': order.garment_type,
+        'pant_options': order.pant_options,
+        'shirt_options': order.shirt_options,
+        'quantity': order.quantity,
+        'order_date': order.order_date.isoformat() if order.order_date else None,
+        'delivery_date': order.delivery_date.isoformat() if order.delivery_date else None,
+        'customer_name': order.customer_name,
+        'mobile_number': order.mobile_number,
+        'order_status': order.order_status
+    }
 
-# Route to get orders with sorting
+@main.route('/api/worker-info/<worker_name>', methods=['GET'])
+def get_worker_info(worker_name):
+    # Fetch orders for the specific worker by their name
+    orders = Order.query.filter_by(worker_name=worker_name).all()
+    
+    # Convert orders to a list of dictionaries
+    orders_list = [order_as_dict(order) for order in orders]
+    
+    # Prepare the response data
+    response = {
+        'name': worker_name,
+        'orders': orders_list
+    }
+    
+    return jsonify(response), 200
+
+
+#Sorting Order By Status
 @main.route('/api/orders', methods=['GET'])
 def get_orders():
-    sort_type = request.args.get('sort', 'date')
-    sort_date = request.args.get('date')
-    sort_status = request.args.get('status')
+    sort_status = request.args.get('status', 'all')
 
     query = Order.query
 
-    # Apply sorting
-    if sort_type == 'date':
-        query = query.order_by(Order.order_date.desc() if sort_date == 'newest' else Order.order_date.asc())
-    elif sort_type == 'status':
-        query = query.order_by(Order.status.desc() if sort_status == 'completed' else Order.status.asc())
-
     # Apply status filtering
-    if sort_status and sort_status != 'all':
-        query = query.filter(Order.status == sort_status)
+    if sort_status != 'all':
+        query = query.filter(Order.order_status == sort_status)
+
+    # Sort by status
+    query = query.order_by(Order.order_status.asc())
 
     orders = query.all()
     return jsonify([order.as_dict() for order in orders]), 200
+
 
 # Utility method to convert model to dict
 def as_dict(self):

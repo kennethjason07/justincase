@@ -13,6 +13,7 @@ class Order(db.Model):
     worker_name = db.Column(db.String(100))
     customer_name = db.Column(db.String(100))
     mobile_number = db.Column(db.String(20))
+    order_status = db.Column(db.String(20))
 
 class Worker(db.Model):
     id = db.Column(db.Integer, primary_key=True)
