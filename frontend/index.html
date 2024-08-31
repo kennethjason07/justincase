@@ -198,6 +198,9 @@
                                     <option value="Worker 15">Worker 15</option>
                                     <option value="Worker 16">Worker 16</option>
 </select>
+    <div id="workerinfo">
+
+    </div>
 
                         <!-- Worker Profiles will be dynamically inserted here -->
                     </div>
@@ -493,7 +496,7 @@ document.getElementById('new-bill-form').addEventListener('submit', function (ev
 }
 
 function displayWorkerInfo(workerData) {
-    const workerList = document.getElementById('worker-list');
+    const workerList = document.getElementById('workerinfo');
     workerList.innerHTML = '';
 
     if (!workerData || workerData.length === 0) {
